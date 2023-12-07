@@ -294,7 +294,7 @@ public class RuleService {
 ## 六、系统使用演示
 <img src="https://www.chengygy.cn/file/example231207.png" style="width:50%;" alt="图片无法查看">
 用户点击复选框选中动物具有的特征，提交后即可显示识别结果。识别结果可能有多个，包括所有中间的结论和最后的结果。
-
+现在已经部署，可以点击[在线体验](https://www.chengygy.cn/animal/index.html)
 
 ​	
 
