@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>简易动物识别专家系统</title>
+  </head>
+  <body>
+    <iframe name="formsubmit" style="display: none"></iframe>
+    <h1>简易动物识别专家系统--在线使用</h1>
+    <form action="/animal/result" method="post" target="formsubmit">
+      <h3>选择要识别的动物的特征</h3>
+      <input type="checkbox" name="condition1" value="1" />有毛发<br />
+      <input type="checkbox" name="condition2" value="1" />有奶<br />
+      <input type="checkbox" name="condition3" value="1" />有羽毛<br />
+      <input type="checkbox" name="condition4" value="1" />会飞<br />
+      <input type="checkbox" name="condition5" value="1" />会生蛋<br />
+      <input type="checkbox" name="condition6" value="1" />吃肉<br />
+      <input type="checkbox" name="condition7" value="1" />有锋利牙齿<br />
+      <input type="checkbox" name="condition8" value="1" />有爪<br />
+      <input type="checkbox" name="condition9" value="1" />眼向前方<br />
+      <input type="checkbox" name="condition11" value="1" />有蹄<br />
+      <input type="checkbox" name="condition12" value="1" />反刍<br />
+      <input type="checkbox" name="condition14" value="1" />有黄褐色皮毛<br />
+      <input type="checkbox" name="condition15" value="1" />有暗斑点<br />
+      <input type="checkbox" name="condition16" value="1" />有黑色条纹<br />
+      <input type="checkbox" name="condition18" value="1" />有长脖子<br />
+      <input type="checkbox" name="condition19" value="1" />有长腿<br />
+      <input type="checkbox" name="condition21" value="1" />不会飞<br />
+      <input type="checkbox" name="condition22" value="1" />有黑白二色<br />
+      <input type="checkbox" name="condition23" value="1" />会游泳<br />
+      <input type="checkbox" name="condition24" value="1" />善飞<br />
+      <input type="submit" />
+    </form>
+    <br />
+    识别结果为：<text id="result"></text>
+    <br />
+    <text
+      >注意：识别的出的动物种类是根据输入的动物特征中是否有匹配的特征，有匹配成功的即为可能的动物种类</text
+    >
+    <script>
+      document
+        .querySelector("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "/animal/result", true);
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              var response = JSON.parse(xhr.responseText);
+              document.getElementById("result").textContent = response.data;
+            }
+          };
+          xhr.send(new FormData(event.target));
+        });
+    </script>
+  </body>
+</html>

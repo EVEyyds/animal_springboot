@@ -1,0 +1,10 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+spring:
+  application:
+    name: drools_springboot
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
