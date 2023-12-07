@@ -1,10 +1,10 @@
 # 设计说明文档
-## 一、系统说明 {#1}
+## 一、系统说明
 本系统是一个简易的***动物识别专家系统***，基于***Spring Boot***和***html***实现。
 ***整体效果***：在Spring Boot中定义规则库，html页面中输入已知的事实作为事实库，在Spring Boot中利用自定义的规则引擎匹配出结论，返回并显示在html页面中。
 
-## 二、主要类说明 {#2}
-### 1.规则类(Rule) {#2.1}
+## 二、主要类说明
+### 1.规则类(Rule)
 ```java
 	public class Rule {
 		List<String> conditions;
@@ -12,7 +12,7 @@
 	 }
 ```
 Rule类包括两个List：规则前件（Conditions）和规则后件（result）。
-### 2.规则引擎类(RuleEngine) {#2.2}
+### 2.规则引擎类(RuleEngine)
 ```java
 	public class RuleEngine {
 	private static List<Rule> rules;   // 规则库
@@ -118,8 +118,8 @@ Rule类包括两个List：规则前件（Conditions）和规则后件（result�
 事实库由每次使用RuleEngine时传入。调用RuleEngine.decure来实现正向推理。  
 **规则引擎**正向推理的过程如下：
 从规则库中取一条规则，判断其规则后件是否都在事实库中，若有不在的，则判断其规则前件是否都在事实库中，若都在，则将规则后件都放入事实库中，然后重新取一条规则，直至规则库中找不到有规则符合要求，则执行结束。
-## 三、规则库说明 {#3}
-### 1.初始化使用的**初始规则库文件.json文件格式**示例 {#3.1}
+## 三、规则库说明
+### 1.初始化使用的**初始规则库文件.json文件格式**示例
 ```json
 	[ 
 	 {
@@ -137,7 +137,7 @@ Rule类包括两个List：规则前件（Conditions）和规则后件（result�
 	]
 ```
 将规则前件写入conditions，规则后件写入result，如果前件和后件有意义相同的事实，要求表达方式一致。
-### 2.本系统初始应用的**规则库**如下 {#3.2}
+### 2.本系统初始应用的**规则库**如下
 ```
 R1:if动物有毛发then动物是哺乳动物
 R2:if动物有奶then动物是哺乳动物
@@ -155,7 +155,7 @@ R13:if动物是鸟and不会飞and有长脖子and有长腿and有黑白二色then�
 R14:if动物是鸟and不会飞and会游泳and有黑白二色then动物是企鹅
 R15:if动物是鸟and善飞then动物是信天翁
 ```
-## 四、接口设计 {#4}
+## 四、接口设计
 **AnimalController.java**
 ```java
 @RestController
@@ -229,7 +229,7 @@ public class RuleService {
     }
 }
 ```
-## 五、页面设计 {#5}
+## 五、页面设计
 **index.html**
 ```html
 <!DOCTYPE html>
@@ -291,7 +291,7 @@ public class RuleService {
   </body>
 </html>
 ```
-## 六、系统使用演示 {#6}
+## 六、系统使用演示
 <img src="https://www.chengygy.cn/file/example231207.png" style="width:50%;" alt="图片无法查看">
 用户点击复选框选中动物具有的特征，提交后即可显示识别结果。识别结果可能有多个，包括所有中间的结论和最后的结果。
 
